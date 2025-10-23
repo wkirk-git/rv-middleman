@@ -5,7 +5,7 @@ apt-get install -y curl=8.14.1-2 \
 xz-utils=5.8.1-1 \
 make=4.4.1-2 \
 gcc=4:14.2.0-1 \
-libsass-dev build-essential \
+libsass-dev build-essential nodejs \
 git=1:2.47.3-0+deb13u1 \
 libyaml-dev=0.2.5-2 && \
 rm -rf /var/lib/apt/lists/* && \
@@ -19,6 +19,9 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/spinel-coop/rv/releases
 rv ruby install 3.4.7 && \
 rv ruby pin ruby-3.4.7 && \
 gem update --system 3.7.2 && \
-gem install middleman
-#rails new app
-#ENTRYPOINT ["./app/bin/rails", "s", "-b", "0.0.0.0"]
+bundle init && \
+bundle add middleman && \
+bundle exec middleman init && \
+bundle install && \
+bundle exec middleman build
+ENTRYPOINT ["bundle", "exec", "middleman", "serve"]

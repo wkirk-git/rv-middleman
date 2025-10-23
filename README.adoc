@@ -1,1 +1,23 @@
 = rv-middleman
+
+Testing out the new link:https://github.com/spinel-coop/rv[rv package manager] for ruby.
+This uses it to install ruby in a slim debian container and install and run middleman.
+
+(I'm only testing this on my mbp so it is very apple silicon centric)
+
+* Builds a slim debian trixie container
+* Installs rv
+* Sets up a non root middleman user space
+* rv installs ruby 3.4.7
+* rv pins ruby 3.4.7
+* copies in the middle man project
+* bundle installs the Gemfile requirements
+* Starts middleman server at launch
+
+== Makefile commands
+
+```bash
+make build # builds a multi plaform container
+make run # launches the container available at http://localhost:4567
+make shell # launches a shell into the container
+```

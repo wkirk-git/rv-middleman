@@ -39,5 +39,7 @@ Build and run
 [source,bash]
 make build 
 make run
+# or using docker
+docker run wkirk/rv-middleman:0.2.0
 
-Access at http://localhost:4567
+Access at http#://localhost:4567

@@ -28,4 +28,5 @@ rv ruby pin ruby-3.4.7 && \
 gem update --system 3.7.2 && \
 bundle update && \
 bundle install
+EXPOSE 4567
 ENTRYPOINT ["bundle", "exec", "middleman", "server", "--bind-address", "0.0.0.0"]

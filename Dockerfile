@@ -1,4 +1,5 @@
-FROM debian:trixie-20251020-slim
+FROM debian:trixie-20251208-slim
+#FROM debian:trixie-20251020-slim
 LABEL maintainer="William Kirk wkirk-git@mailbox.org" \
       org.opencontainers.image.authors="William Kirk wkirk-git@mailbox.org" \
       description="This project https://github.com/wkirk-git/rv-middleman demonstrates using the rv package manager to set up a Ruby development environment with Middleman in a slim Debian Trixie container." \
@@ -6,7 +7,8 @@ LABEL maintainer="William Kirk wkirk-git@mailbox.org" \
 SHELL ["/bin/bash", "-exo", "pipefail",  "-c"]
 RUN apt-get update -y && \
 apt-get install -y --no-install-recommends \
-curl=8.14.1-2 \
+#curl=8.14.1-2 \
+curl=8.14.1-2+deb13u2 \
 xz-utils=5.8.1-1 \
 libsass-dev=3.6.5+20231221-3+b1 \
 build-essential=12.12 \
@@ -22,7 +24,7 @@ ENV PATH="$PATH:/home/middleman/.cargo/bin:/home/middleman/.data/rv/rubies/ruby-
 ENV BASH_ENV="/home/middleman/.bashrc"
 RUN echo "eval \"$(rv shell init bash)\"" >> ~/.bashrc
 COPY . /home/middleman
-RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/spinel-coop/rv/releases/download/v0.2.0/rv-installer.sh | sh && \
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/spinel-coop/rv/releases/download/v0.3.0/rv-installer.sh | sh && \
 rv ruby install 3.4.7 && \
 rv ruby pin ruby-3.4.7 && \
 gem update --system 3.7.2 && \
